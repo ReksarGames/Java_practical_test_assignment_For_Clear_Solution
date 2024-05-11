@@ -6,9 +6,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+/**
+ * UserConverter class is responsible for converting UserDTO to User entity and vice versa.
+ *
+ *
+ */
 @Component
 public class UserConverter {
 
+    /**
+     * Converts a UserDTO object to a User entity.
+     *
+     * @param userDto the UserDTO object to be converted
+     * @return an Optional containing the converted User entity, or empty if the UserDTO is null
+     */
     public Optional<User> convertToEntity(UserDTO userDto) {
         User user = new User();
         user.setEmail(userDto.getEmail());
@@ -20,6 +31,12 @@ public class UserConverter {
         return Optional.of(user);
     }
 
+    /**
+     * Converts a User entity to a UserDTO object.
+     *
+     * @param user the User entity to be converted
+     * @return a UserDTO object containing the converted data, or throws an IllegalArgumentException if the User entity is null
+     */
     public UserDTO convertToDto(Optional<User> user) {
         return user.map(userEntity -> {
             UserDTO userDto = new UserDTO();
